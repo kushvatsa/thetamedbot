@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:thetamedbot/models/myuser.dart';
-import 'package:thetamedbot/pages/home_page/home_page.dart';
+import 'package:thetamedbot/pages/home_page/home_page_v1.dart';
+
 import 'package:thetamedbot/pages/signin_page/signin_page.dart';
 
 class AuthWidget extends StatelessWidget {

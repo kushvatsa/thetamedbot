@@ -25,6 +25,9 @@ dependencies:
   connectivity: ^2.0.0
   built_collection: ^4.3.2
   built_value: ^7.1.0
+  fancy_bottom_bar: ^0.0.1
+  salomon_bottom_bar: ^2.0.0
+  nice_button: ^0.1.7
   flutter_localizations:
     sdk: flutter
 
