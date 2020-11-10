@@ -9,8 +9,6 @@ r = requests.get(url, allow_redirects=True)
 open('skin_cancer_vgg16.tflite.zip', 'wb').write(r.content)
 '''
 
-
-
 import os
 import gc
 from PIL import Image
@@ -53,13 +51,13 @@ train_images, test_images = np.array(train_images), np.array(test_images)
 train_labels, test_labels = np.array(train_labels), np.array(test_labels)
 
 distribution = np.bincount(np.concatenate([train_labels, test_labels]))
-'''
+
 print('TRAIN SET SIZE :', len(train_images))
 print('TEST SET SIZE:', len(test_images))
 print(distribution[0], 'BENIGN ', distribution[1], 'MALIGNANT')
-'''
 
-'''
+
+
 # Load the images to memory
 X_train, X_test = [], []
 Y_train, Y_test = train_labels, test_labels
@@ -122,29 +120,16 @@ model.add(Dense(32))
 model.add(LeakyReLU(0.001))
 model.add(Dense(16))
 model.add(LeakyReLU(0.001))
-model.add(Dense(1, activation='sigmoid'))
+model.add(Dense(2, activation='softmax'))
 model.layers[0].trainable = False
 
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc'])
+model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['acc'])
 model.summary()
 
 # Train the model
-n_epochs = 20
+n_epochs = 50
 
-#history = model.fit(X_train_new, Y_train_new, validation_data=(X_val, Y_val), epochs=n_epochs, batch_size=64)
+history = model.fit(X_train_new, Y_train_new, validation_data=(X_val, Y_val), epochs=n_epochs, batch_size=64,shuffle=True)
 
-#print('Accuracy on test set:', model.evaluate(X_test, Y_test)[1])
-#model.save('skin_cancer_vgg16.h5')
-'''
-model = load_model('skin_cancer_vgg16.h5')
-# summarize model.
-model.summary()
-#score = model.evaluate(X_test, Y_test, verbose=0)
-#print("%s: %.2f%%" % (model.metrics_names[1], score[1]*100))
-
-#convert to tflite
-
-converter = tf.lite.TFLiteConverter.from_keras_model( model )
-model = converter.convert()
-file = open( 'skin_cancer_vgg16.tflite' , 'wb' )
-file.write( model )
+print('Accuracy on test set:', model.evaluate(X_test, Y_test)[1])
+#model.save('skin_cancer_softmax.h5')
