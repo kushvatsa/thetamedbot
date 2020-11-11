@@ -3,10 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nice_button/nice_button.dart';
 import 'package:tflite/tflite.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:thetamedbot/models/myuser.dart';
+import 'package:path/path.dart' as path;
 import 'firebase_storage/storage.dart';
 import 'dart:io';
 
 class SkinCancerDescription extends StatefulWidget {
+  const SkinCancerDescription({Key key, @required this.userSnapshot})
+      : super(key: key);
+  final AsyncSnapshot<MyUser> userSnapshot;
   _SkinCancerDescription createState() => _SkinCancerDescription();
 }
 
@@ -17,7 +22,10 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
   }
 
   var imageURI;
-  FirebaseStoringClass firebaseStoringClass=FirebaseStoringClass();
+  FirebaseStoringClass firebaseStoringClass = FirebaseStoringClass();
+  String img_file;
+  double accuracy;
+  String result;
 
   final ImagePicker _imagepicker = ImagePicker();
   String res;
@@ -34,19 +42,32 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
       imageURI = File(image.path);
 
       if (imageURI != null) {
-        firebaseStoringClass.uploadImageToFirebase(context, File(image.path));
+        firebaseStoringClass
+            .uploadImageToFirebase(context, File(image.path))
+            .then((value) {
+          print(value);
+        });
       }
     });
   }
 
   Future<void> fetchImagecamera() async {
-    final image = await _imagepicker.getImage(source: ImageSource.camera,imageQuality: 50);
+    final image = await _imagepicker.getImage(
+        source: ImageSource.camera, imageQuality: 50);
     classifyImage(File(image.path));
     setState(() {
       imageURI = File(image.path);
 
       if (imageURI != null) {
-        firebaseStoringClass.uploadImageToFirebase(context, File(image.path));
+        firebaseStoringClass
+            .uploadImageToFirebase(context, File(image.path))
+            .then((value) {
+              setState((){
+          img_file = value;
+          print("///////////////////////////////////////");
+          print(value);
+              });
+        });
       }
     });
   }
@@ -64,6 +85,11 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
       print(results[0]["label"]);
       setState(() {
         this.res = results[0]["label"];
+        firebaseStoringClass.storeResultsCloudFirestore(widget.userSnapshot,
+            path.basename(image.path), results[0]["label"], results[0]["confidence"]).then((value) => print("..............................................//////////////////////////////////////////????????????????????????????????"));
+            print(img_file);
+            print(path.basename(image.path));
+            print("............. Storeddddddd in Firestore !");
       });
     }
   }
@@ -71,7 +97,10 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: ListView(
-      children: <Widget>[SizedBox(height: MediaQuery.of(context).size.height*0.1,),
+      children: <Widget>[
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.1,
+        ),
         Center(
           child: Text("Make Diagnosis As Easy As Taking A Picture",
               style: GoogleFonts.oswald(
@@ -87,7 +116,8 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              NiceButton(width:140,
+              NiceButton(
+                width: 140,
                 radius: 13.0,
                 gradientColors: [Colors.blue[900], Colors.blue[800]],
                 text: "Gallery",
@@ -96,7 +126,8 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
                   fetchImagegallery();
                 },
               ),
-              NiceButton(width:140,
+              NiceButton(
+                width: 140,
                 radius: 13.0,
                 gradientColors: [Colors.blue[900], Colors.blue[800]],
                 text: "Camera",

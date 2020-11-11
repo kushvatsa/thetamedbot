@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     //int selectedPos = 0;
     var pages = [
-      SkinCancerDescription(),
+      SkinCancerDescription(userSnapshot:widget.userSnapshot),
       Container(),
       AccPage(userSnapshot: widget.userSnapshot)
     ];
