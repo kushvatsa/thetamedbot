@@ -83,7 +83,7 @@ def model_vgg():
     model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['acc'])
     #model.summary()
     return model
-def train_model(model,n_epochs,batch_size):
+def train_model(model,X_train_new, Y_train_new,X_val, Y_val,n_epochs,batch_size):
     history = model.fit(X_train_new, Y_train_new, validation_data=(X_val, Y_val), epochs=n_epochs, batch_size=batch_size,
                         shuffle=True)
 
@@ -125,5 +125,5 @@ if __name__ == '__main__':
     # Train the model
     n_epochs = 50
     batch_size=64
-    train_model(model,n_epochs,batch_size)
+    train_model(model,X_train_new, Y_train_new,X_val, Y_val,n_epochs,batch_size)
     print('Accuracy on test set:', model.evaluate(X_test, Y_test)[1])
