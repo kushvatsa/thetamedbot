@@ -44,10 +44,17 @@ class _SkinDiagnosis extends State<SkinDiagnosis> {
             child: Container(
           child: this.res == null
               ? Text("")
-              : Center(child:Row(mainAxisAlignment: MainAxisAlignment.center,
+              : Center(
+                  child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Result for This Diagnosis: ",style:GoogleFonts.oswald(fontSize:15.0)),
-                    Text(this.res,style: GoogleFonts.oswald(fontWeight:FontWeight.bold,fontSize: 19.0),)
+                    Text("Result for This Diagnosis: ",
+                        style: GoogleFonts.oswald(fontSize: 15.0)),
+                    Text(
+                      this.res,
+                      style: GoogleFonts.oswald(
+                          fontWeight: FontWeight.bold, fontSize: 19.0),
+                    )
                   ],
                 )),
           margin: EdgeInsets.only(top: 25.0, bottom: 25.0),
@@ -58,7 +65,8 @@ class _SkinDiagnosis extends State<SkinDiagnosis> {
 
   void loadModel() async {
     await Tflite.loadModel(
-        model: "assets/skin_cancer_softmax.tflite", labels: "assets/labels_skin_cancer.txt");
+        model: "assets/skin_cancer_softmax.tflite",
+        labels: "assets/labels_skin_cancer.txt");
   }
 
   Future<void> fetchImage() async {
@@ -82,8 +90,8 @@ class _SkinDiagnosis extends State<SkinDiagnosis> {
 
       print(results);
       print(results[0]["label"]);
-      setState((){
-        this.res=results[0]["label"];
+      setState(() {
+        this.res = results[0]["label"];
       });
     }
   }
