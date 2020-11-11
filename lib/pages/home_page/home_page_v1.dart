@@ -19,7 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int selectedPos = 0;
-  var _selectedTab = _SelectedTab.home;
+  
   @override
   Widget build(BuildContext context) {
     //int selectedPos = 0;
@@ -31,36 +31,18 @@ class _HomePageState extends State<HomePage> {
       FancyBottomItem(title: Text("Profile"), icon: Icon(Icons.person)),
     ];
 
-    var _selectedTab = _SelectedTab.home;
+    
 
     void _handleIndexChanged(int i) {
       setState(() {
-        _selectedTab = _SelectedTab.values[i];
+        
         selectedPos = i;
       });
     }
 
     return Scaffold(
       bottomNavigationBar:
-          /*SalomonBottomBar(
-            currentIndex: _SelectedTab.values.indexOf(_selectedTab),
-            onTap: _handleIndexChanged,
-            items: [
-              /// Home
-              SalomonBottomBarItem(
-                icon: Icon(Icons.home),
-                title: Text("Home"),
-                selectedColor: Colors.amber,
-              ),
-
-              /// Profile
-              SalomonBottomBarItem(
-                icon: Icon(Icons.person),
-                title: Text("Profile"),
-                selectedColor: Colors.teal,
-              ),
-            ],
-          ),*/
+         
           FancyBottomBar(
         onItemSelected: (i) => setState(() {
           selectedPos = i;
@@ -76,5 +58,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-enum _SelectedTab { home, profile }

@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nice_button/nice_button.dart';
 import 'package:tflite/tflite.dart';
 import 'package:image_picker/image_picker.dart';
+import 'firebase_storage/storage.dart';
 import 'dart:io';
 
 class SkinCancerDescription extends StatefulWidget {
@@ -16,6 +17,7 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
   }
 
   var imageURI;
+  FirebaseStoringClass firebaseStoringClass=FirebaseStoringClass();
 
   final ImagePicker _imagepicker = ImagePicker();
   String res;
@@ -31,7 +33,9 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
     setState(() {
       imageURI = File(image.path);
 
-      if (imageURI != null) {}
+      if (imageURI != null) {
+        firebaseStoringClass.uploadImageToFirebase(context, File(image.path));
+      }
     });
   }
 
@@ -41,7 +45,9 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
     setState(() {
       imageURI = File(image.path);
 
-      if (imageURI != null) {}
+      if (imageURI != null) {
+        firebaseStoringClass.uploadImageToFirebase(context, File(image.path));
+      }
     });
   }
 
