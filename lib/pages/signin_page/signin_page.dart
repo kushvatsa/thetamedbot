@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:thetamedbot/pages/signin_page/validators.dart';
 import 'package:thetamedbot/services/firebase_auth_service.dart';
 import 'package:provider/provider.dart';
 import '../description_page/description.dart';
@@ -58,15 +59,7 @@ class _SignInPageState extends State<SignInPage> {
                       TextFormField(
                         key: _emailKey,
                         controller: _emailController,
-                        validator: (String value) {
-                          Pattern pattern =
-                              r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                          RegExp regex = new RegExp(pattern);
-                          if (!regex.hasMatch(value)) {
-                            return 'Invalid email';
-                          }
-                          return null;
-                        },
+                        validator: EmailFieldValidator.validate,
                         decoration: InputDecoration(
                             labelText: 'EMAIL',
                             labelStyle: TextStyle(
@@ -79,12 +72,7 @@ class _SignInPageState extends State<SignInPage> {
                       SizedBox(height: 20.0),
                       TextFormField(
                         controller: _passwordController,
-                        validator: (String value) {
-                          if (value.length < 6) {
-                            return 'Strong passwords have at least 6 characters.';
-                          }
-                          return null;
-                        },
+                        validator: PasswordFieldValidator.validate,
                         decoration: InputDecoration(
                             labelText: 'PASSWORD',
                             labelStyle: TextStyle(
