@@ -155,7 +155,8 @@ class _SignInPageState extends State<SignInPage> {
                   InkWell(
                     onTap: () {
                       //Navigator.pushNamed(context, '/sup');
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) {
                         return DescriptionPage();
                       }));
                     },

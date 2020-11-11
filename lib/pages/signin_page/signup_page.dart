@@ -123,7 +123,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         InkWell(
                           onTap: () {
                             //Navigator.pop(context);
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context) {
                               return SignInPage();
                             }));
                           },
@@ -167,7 +168,7 @@ class _SignUpPageState extends State<SignUpPage> {
           _emailController.text, _passwordController.text);
       await auth.verifyEmailSend();
       //Navigator.pop(context);
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
         return SignInPage();
       }));
     } on FirebaseAuthException catch (e) {
