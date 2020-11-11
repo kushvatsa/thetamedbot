@@ -13,7 +13,8 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final GlobalKey<FormFieldState> _emailKey = GlobalKey<FormFieldState>();
+  final GlobalKey<FormFieldState> _emailKey =
+      GlobalKey<FormFieldState>(debugLabel: 'email');
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   @override
@@ -113,6 +114,7 @@ class _SignInPageState extends State<SignInPage> {
                         child: Container(
                           height: 40.0,
                           child: Material(
+                            key: Key('signIn'),
                             borderRadius: BorderRadius.circular(20.0),
                             shadowColor: Colors.blueAccent,
                             color: Colors.blue,

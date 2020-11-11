@@ -55,6 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: Column(
                       children: <Widget>[
                         TextFormField(
+                          key: Key('email'),
                           controller: _emailController,
                           validator: EmailFieldValidator.validate,
                           decoration: InputDecoration(
@@ -70,6 +71,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         SizedBox(height: 10.0),
                         TextFormField(
+                          key: Key('password'),
                           controller: _passwordController,
                           validator: PasswordFieldValidator.validate,
                           decoration: InputDecoration(
@@ -92,6 +94,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           child: Container(
                               height: 40.0,
                               child: Material(
+                                key: Key('signUp'),
                                 borderRadius: BorderRadius.circular(20.0),
                                 shadowColor: Colors.blueAccent,
                                 color: Colors.blue,
