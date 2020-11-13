@@ -31,7 +31,8 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
   String res;
   void loadModel() async {
     await Tflite.loadModel(
-        model: "assets/skin_cancer_softmax.tflite",
+        model:
+            "assets/skin_cancer_softmax.tflite", //model_skin_cancer_90.tflite
         labels: "assets/labels_skin_cancer.txt");
   }
 
@@ -62,11 +63,11 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
         firebaseStoringClass
             .uploadImageToFirebase(context, File(image.path))
             .then((value) {
-              setState((){
-          img_file = value;
-          print("///////////////////////////////////////");
-          print(value);
-              });
+          setState(() {
+            img_file = value;
+            print("///////////////////////////////////////");
+            print(value);
+          });
         });
       }
     });
@@ -85,11 +86,17 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
       print(results[0]["label"]);
       setState(() {
         this.res = results[0]["label"];
-        firebaseStoringClass.storeResultsCloudFirestore(widget.userSnapshot,
-            path.basename(image.path), results[0]["label"], results[0]["confidence"]).then((value) => print("..............................................//////////////////////////////////////////????????????????????????????????"));
-            print(img_file);
-            print(path.basename(image.path));
-            print("............. Storeddddddd in Firestore !");
+        firebaseStoringClass
+            .storeResultsCloudFirestore(
+                widget.userSnapshot,
+                path.basename(image.path),
+                results[0]["label"],
+                results[0]["confidence"])
+            .then((value) => print(
+                "..............................................//////////////////////////////////////////????????????????????????????????"));
+        print(img_file);
+        print(path.basename(image.path));
+        print("............. Storeddddddd in Firestore !");
       });
     }
   }
@@ -110,6 +117,63 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
           margin: EdgeInsets.all(10.0),
           child: Text(
               "Skin cancer — the abnormal growth of skin cells — most often develops on skin exposed to the sun. But this common form of cancer can also occur on areas of your skin not ordinarily exposed to sunlight.\n\n In order to quickly diaognize either your skin or your patients' skins are infected or not with cancer, We offer a Deep Learning powered solution to predict such anomaly by analyzing the provided skin image "),
+        ),
+        Row(
+          children: <Widget>[
+            Container(
+              height: 289,
+              width: MediaQuery.of(context).size.width * 0.45,
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black, width: 3.5),
+                  borderRadius: BorderRadius.all(Radius.circular(12.0))),
+              child: Column(children: <Widget>[
+                Column(
+                  children: [
+                    Center(
+                        child: Text("Benign",
+                            style: GoogleFonts.oswald(
+                                fontWeight: FontWeight.bold, fontSize: 15))),
+                    Container(
+                        margin: EdgeInsets.all(5.0),
+                        padding: EdgeInsets.all(5.0),
+                        child: Center(
+                            child: Text(
+                          "If the cells are not cancerous, the tumor is benign.It won't invade nearby tissues or spread to other areas ",
+                          style: GoogleFonts.oswald(fontSize: 12),
+                        ))),
+                    Image.asset("assets/benign.png",
+                        width: MediaQuery.of(context).size.width * 0.39)
+                  ],
+                )
+              ]),
+            ),
+            Container(
+              height: 289,
+              width: MediaQuery.of(context).size.width * 0.45,
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black, width: 3.5),
+                  borderRadius: BorderRadius.all(Radius.circular(12.0))),
+              child: Column(children: <Widget>[
+                Column(
+                  children: [
+                    Center(
+                        child: Text("Malignant",
+                            style: GoogleFonts.oswald(
+                                fontWeight: FontWeight.bold, fontSize: 15))),
+                    Container(
+                        margin: EdgeInsets.all(5.0),
+                        padding: EdgeInsets.all(5.0),
+                        child: Text(
+                            "Malignant means that the tumor is made of cancer cells, and it can invade nearby tissues\n",
+                            style: GoogleFonts.oswald(fontSize: 12.0)))
+                  ],
+                ),
+                Image.asset("assets/malignant.png",
+                    width: MediaQuery.of(context).size.width * 0.395)
+              ]),
+            ),
+          ],
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         ),
         Container(
           margin: EdgeInsets.all(10.0),
