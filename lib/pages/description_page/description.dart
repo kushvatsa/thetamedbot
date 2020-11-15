@@ -23,30 +23,40 @@ class _DescriptionPage extends State<DescriptionPage> {
               pageColor: Colors.white,
               titleTextStyle:
                   TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-          image: Image.asset("assets/Design_1.png"),
+          image: Image.asset("assets/logo_Theta_MedBot_v1.png"),
           title: "ThetaMedBot",
           body:
-              "The medical plateform of tomorrow powered with AI\n Healthcare is an important axis and the backbone of a society. In ThetaMedBot we care about being the tool that utilizes cutting-edge technologies to help physicians and doctors",
+              "ThetaMedBot keeps your skin healthy with regular skin checks\n In ThetaMedBot we care about awareness of skin cancer and provide a mobile service to help individuals assess their risk of being diseased. ",
+        ),
+        PageViewModel(
+          decoration: PageDecoration(
+              pageColor: Colors.white,
+              titleTextStyle:
+              TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+          image: Image.asset("assets/design_2.png"),
+          title: "Capture your skin spot on camera",
+          body:
+          "Take or upload a photo of the skin spot that concerns you within our App.ThetaMedBot will assess your photo using our AI-based algorithm.",
         ),
         PageViewModel(
           decoration: PageDecoration(
               pageColor: Colors.white,
               titleTextStyle:
                   TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-          image: Image.asset("assets/Design_2.png"),
-          title: "Multiple Deep Learning Image Recognition Model",
+          image: Image.asset("assets/design_3.png"),
+          title: "Get the assessment of your risk",
           body:
-              "Making the diagnosis as simple as scanning a picture for quick and accurate results in real-time",
+              "Within short period of time, you'll receive the result of your skin check. ThetaMedBot will tell whether your skin spot is benign or there is a high probability of being malignant.",
         ),
         PageViewModel(
             decoration: PageDecoration(
                 pageColor: Colors.white,
                 titleTextStyle:
                     TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-            image: Image.asset("assets/Design_3_1.png"),
-            title: "Multipe Data Format",
+            image: Image.asset("assets/design_4.png"),
+            title: "Track your skin spots",
             body:
-                "Models supporting many image categories and data formats.\n \n X-Rays, Cell Images, Skin Images and Tabular format data")
+                "ThetaMedBot securely store the history of your checks so that you can you can look for changes over time.")
       ],
       onDone: () => _introEnd(context),
       showSkipButton: true,
