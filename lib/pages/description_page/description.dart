@@ -32,11 +32,11 @@ class _DescriptionPage extends State<DescriptionPage> {
           decoration: PageDecoration(
               pageColor: Colors.white,
               titleTextStyle:
-              TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                  TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
           image: Image.asset("assets/design_2.png"),
           title: "Capture your skin spot on camera",
           body:
-          "Take or upload a photo of the skin spot that concerns you within our App.ThetaMedBot will assess your photo using our AI-based algorithm.",
+              "Take or upload a photo of the skin spot that concerns you within our App.ThetaMedBot will assess your photo using our AI-based algorithm.",
         ),
         PageViewModel(
           decoration: PageDecoration(
