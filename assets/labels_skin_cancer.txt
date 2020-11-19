@@ -1,2 +1,2 @@
-No Skin Cancer Detected 
-Skin Cancer Detected
+Benign
+Malignant
