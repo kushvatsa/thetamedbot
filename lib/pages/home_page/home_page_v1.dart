@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:thetamedbot/models/myuser.dart';
 import 'package:fancy_bottom_bar/fancy_bottom_bar.dart';
-import 'bottom_app_bar_pages/profile_page.dart';
+import 'package:thetamedbot/pages/profile_page/profile_page.dart';
 import 'bottom_app_bar_pages/description_skin_cancer.dart';
 import 'bottom_app_bar_pages/history_page.dart';
 
@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     var pages = [
       SkinCancerDescription(userSnapshot: widget.userSnapshot),
       /*Container()*/ HistoryPage(userSnapshot: widget.userSnapshot),
-      AccPage(userSnapshot: widget.userSnapshot)
+      ProfilePage(userSnapshot: widget.userSnapshot)
     ];
 
     final tabItems = [
