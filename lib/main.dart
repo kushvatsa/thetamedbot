@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:thetamedbot/locals/newapptheme.dart';
 import 'package:thetamedbot/pages/auth_widget.dart';
 import 'package:thetamedbot/pages/auth_widget_builder.dart';
 import 'package:thetamedbot/pages/home_page/home_page.dart';
@@ -38,10 +39,7 @@ class _MyAppState extends State<MyApp> {
       child: AuthWidgetBuilder(builder: (context, userSnapshot) {
         return MaterialApp(
           title: 'ThetaMedBot',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-          ),
+          theme: NewAppTheme.lightThemeData,
           home: AuthWidget(
             userSnapshot: userSnapshot,
           ),
