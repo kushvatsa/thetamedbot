@@ -29,15 +29,15 @@ class FireBaseLoader {
             .collection("Image_Diagnoses")
             .snapshots(),
         builder: (context, snapshot) {
-          print(snapshot);
+          /*print(snapshot);
           print(snapshot.hasData);
           print(snapshot.data);
-          print(snapshot.data.documents.length);
+          print(snapshot.data.documents.length);*/
 
           return !snapshot.hasData
               ? Center(
                   child: CircularProgressIndicator(
-                  backgroundColor: Colors.blue[900],
+                  backgroundColor: Colors.black,
                 ))
               : ListView.builder(
                   itemCount: snapshot.data.documents.length,

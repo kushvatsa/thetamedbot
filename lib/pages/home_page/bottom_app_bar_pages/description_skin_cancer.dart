@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:thetamedbot/models/myuser.dart';
 import 'package:path/path.dart' as path;
 import 'firebase_storage/storage.dart';
+import 'package:connectivity/connectivity.dart';
 import 'dart:io';
 
 class SkinCancerDescription extends StatefulWidget {
@@ -16,9 +17,22 @@ class SkinCancerDescription extends StatefulWidget {
 }
 
 class _SkinCancerDescription extends State<SkinCancerDescription> {
+  String _message = null;
+  bool is_connected=true;
   void initState() {
     super.initState();
     loadModel();
+    //check().then((value) => is_connected = value);
+  }
+
+  Future<bool> check() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile) {
+      return true;
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+      return true;
+    }
+    return false;
   }
 
   var imageURI;
@@ -46,6 +60,7 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
         firebaseStoringClass
             .uploadImageToFirebase(context, File(image.path))
             .then((value) {
+          print("Hereeeeeeeeeeeeeeeeeeeee");
           print(value);
         });
       }
@@ -106,6 +121,24 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
         body: ListView(
       children: <Widget>[
         SizedBox(
+          child: FutureBuilder(future:check(),builder: (context,snapshot){
+                if(snapshot.hasData){
+                  return snapshot.data ? Container() : Center(
+                  child: Text(
+                  "No Internet Connection",
+                  style: GoogleFonts.abel(
+                      color: Colors.red[900], fontWeight: FontWeight.bold),
+                ));
+                }
+          })
+          /*is_connected
+              ? Container()
+              : Center(
+                  child: Text(
+                  "No Internet Connection",
+                  style: GoogleFonts.abel(
+                      color: Colors.red[900], fontWeight: FontWeight.bold),
+                ))*/,
           height: MediaQuery.of(context).size.height * 0.1,
         ),
         Center(
@@ -187,7 +220,15 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
                 text: "Gallery",
                 icon: Icons.image,
                 onPressed: () {
-                  fetchImagegallery();
+                  try {
+                    fetchImagegallery();
+                  } catch (e) {
+                    setState(() {
+                      print(
+                          "#########################################################");
+                      _message = e.toString();
+                    });
+                  }
                 },
               ),
               NiceButton(

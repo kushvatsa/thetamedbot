@@ -43,7 +43,7 @@ class _DescriptionPage extends State<DescriptionPage> {
               pageColor: Colors.white,
               titleTextStyle:
                   TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-          image: Image.asset("assets/design_3.png"),
+          image: Image.asset("assets/design_3.jpg"),
           title: "Get the assessment of your risk",
           body:
               "Within short period of time, you'll receive the result of your skin check. ThetaMedBot will tell whether your skin spot is benign or there is a high probability of being malignant.",
