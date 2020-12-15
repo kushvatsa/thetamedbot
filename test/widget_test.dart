@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:thetamedbot/interfaces/firebase_auth_interface.dart';
@@ -94,4 +94,4 @@ void main() {
         .called(0);
   });
 }
-
+*/

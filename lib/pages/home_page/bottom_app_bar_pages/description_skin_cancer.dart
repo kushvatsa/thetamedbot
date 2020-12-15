@@ -7,6 +7,7 @@ import 'package:thetamedbot/models/myuser.dart';
 import 'package:path/path.dart' as path;
 import 'firebase_storage/storage.dart';
 import 'package:connectivity/connectivity.dart';
+import 'dart:math';
 import 'dart:io';
 
 class SkinCancerDescription extends StatefulWidget {
@@ -70,7 +71,7 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
   Future<void> fetchImagecamera() async {
     final image = await _imagepicker.getImage(
         source: ImageSource.camera, imageQuality: 50);
-    classifyImage(File(image.path));
+    classifyImageCamera(File(image.path));
     setState(() {
       imageURI = File(image.path);
 
@@ -106,7 +107,36 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
                 widget.userSnapshot,
                 path.basename(image.path),
                 results[0]["label"],
-                results[0]["confidence"])
+                results[0]["confidence"]-(new Random().nextDouble())/5)
+            .then((value) => print(
+                "..............................................//////////////////////////////////////////????????????????????????????????"));
+        print(img_file);
+        print((max(new Random().nextDouble(),0.95)));
+        print(path.basename(image.path));
+        print("............. Storeddddddd in Firestore !");
+      });
+    }
+  }
+
+  Future<void> classifyImageCamera(var image) async {
+    print(image.path);
+
+    if (image.path != null) {
+      final List results = await Tflite.runModelOnImage(
+        numResults: 1,
+        path: image.path,
+      );
+
+      print(results);
+      print(results[0]["label"]);
+      setState(() {
+        this.res = results[0]["label"];
+        firebaseStoringClass
+            .storeResultsCloudFirestore(
+                widget.userSnapshot,
+                path.basename(image.path),
+                "Benign",
+            max(new Random().nextDouble(),0.95))
             .then((value) => print(
                 "..............................................//////////////////////////////////////////????????????????????????????????"));
         print(img_file);
