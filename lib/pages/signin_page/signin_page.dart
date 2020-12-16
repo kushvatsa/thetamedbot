@@ -31,13 +31,13 @@ class _SignInPageState extends State<SignInPage> {
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
-                      child: Text('Hello',
+                      child: Text('Theta',
                           style: TextStyle(
                               fontSize: 80.0, fontWeight: FontWeight.bold)),
                     ),
                     Container(
                       padding: EdgeInsets.fromLTRB(16.0, 185.0, 0.0, 0.0),
-                      child: Text('There',
+                      child: Text('MedBot',
                           style: TextStyle(
                               fontSize: 80.0, fontWeight: FontWeight.bold)),
                     ),
