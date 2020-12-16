@@ -18,10 +18,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    //int selectedPos = 0;
     var pages = [
       SkinCancerDescription(userSnapshot: widget.userSnapshot),
-      /*Container()*/ HistoryPage(userSnapshot: widget.userSnapshot),
+      HistoryPage(userSnapshot: widget.userSnapshot),
       ProfilePage(userSnapshot: widget.userSnapshot)
     ];
 

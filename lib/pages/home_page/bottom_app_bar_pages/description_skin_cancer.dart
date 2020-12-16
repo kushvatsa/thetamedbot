@@ -19,7 +19,7 @@ class SkinCancerDescription extends StatefulWidget {
 
 class _SkinCancerDescription extends State<SkinCancerDescription> {
   String _message = null;
-  bool is_connected=true;
+  bool is_connected = true;
   void initState() {
     super.initState();
     loadModel();
@@ -107,11 +107,11 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
                 widget.userSnapshot,
                 path.basename(image.path),
                 results[0]["label"],
-                results[0]["confidence"]-(new Random().nextDouble())/5)
+                results[0]["confidence"] - (new Random().nextDouble()) / 5)
             .then((value) => print(
                 "..............................................//////////////////////////////////////////????????????????????????????????"));
         print(img_file);
-        print((max(new Random().nextDouble(),0.95)));
+        print((max(new Random().nextDouble(), 0.95)));
         print(path.basename(image.path));
         print("............. Storeddddddd in Firestore !");
       });
@@ -136,7 +136,7 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
                 widget.userSnapshot,
                 path.basename(image.path),
                 "Benign",
-            max(new Random().nextDouble(),0.95))
+                max(new Random().nextDouble(), 0.95))
             .then((value) => print(
                 "..............................................//////////////////////////////////////////????????????????????????????????"));
         print(img_file);
@@ -151,16 +151,21 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
         body: ListView(
       children: <Widget>[
         SizedBox(
-          child: FutureBuilder(future:check(),builder: (context,snapshot){
-                if(snapshot.hasData){
-                  return snapshot.data ? Container() : Center(
-                  child: Text(
-                  "No Internet Connection",
-                  style: GoogleFonts.abel(
-                      color: Colors.red[900], fontWeight: FontWeight.bold),
-                ));
+          child: FutureBuilder(
+              future: check(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return snapshot.data
+                      ? Container()
+                      : Center(
+                          child: Text(
+                          "No Internet Connection",
+                          style: GoogleFonts.abel(
+                              color: Colors.red[900],
+                              fontWeight: FontWeight.bold),
+                        ));
                 }
-          })
+              })
           /*is_connected
               ? Container()
               : Center(
@@ -168,7 +173,8 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
                   "No Internet Connection",
                   style: GoogleFonts.abel(
                       color: Colors.red[900], fontWeight: FontWeight.bold),
-                ))*/,
+                ))*/
+          ,
           height: MediaQuery.of(context).size.height * 0.1,
         ),
         Center(

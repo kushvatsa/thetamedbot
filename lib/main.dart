@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:thetamedbot/locals/newapptheme.dart';
 import 'package:thetamedbot/pages/auth_widget.dart';
 import 'package:thetamedbot/pages/auth_widget_builder.dart';
+import 'package:thetamedbot/pages/home_page/home_page_v1.dart';
 import 'package:thetamedbot/pages/privacy_page/privacy_page.dart';
 import 'package:thetamedbot/pages/profile_page/profile_page.dart';
 import 'package:thetamedbot/pages/signin_page/signin_page.dart';
@@ -43,6 +44,7 @@ class _MyAppState extends State<MyApp> {
             userSnapshot: userSnapshot,
           ),
           routes: <String, WidgetBuilder>{
+            "/home": (context) => HomePage(userSnapshot: userSnapshot),
             "/sin": (context) => SignInPage(),
             "/sup": (context) => SignUpPage(),
             "/profile": (context) => ProfilePage(userSnapshot: userSnapshot),

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:thetamedbot/models/myuser.dart';
 import 'firebase_storage/loading_firebase.dart';
 import 'package:connectivity/connectivity.dart';
-import '../../../models/myuser.dart';
 
 class HistoryPage extends StatefulWidget {
   HistoryPage({Key key, @required this.userSnapshot});
@@ -27,19 +25,24 @@ class _HistoryPage extends State<HistoryPage> {
   }
 
   Widget build(BuildContext context) {
-    return Scaffold(body: FutureBuilder(future:check(),builder: (context, snapshot) {
-      if (snapshot.hasData) {
-        return snapshot.data
-            ? widget._loader.load_history(widget.userSnapshot)
-            : Center(
-                child: Container(width: 200,height:100,
-                    child: Text(
-                        "No Internet Connection, Please check your Wifi !",
-                        style: GoogleFonts.abel(
-                            color: Colors.red[900],
-                            fontWeight: FontWeight.bold))));
-      }
-    }));
+    return Scaffold(
+        body: FutureBuilder(
+            future: check(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return snapshot.data
+                    ? widget._loader.load_history(widget.userSnapshot)
+                    : Center(
+                        child: Container(
+                            width: 200,
+                            height: 100,
+                            child: Text(
+                                "No Internet Connection, Please check your Wifi !",
+                                style: GoogleFonts.abel(
+                                    color: Colors.red[900],
+                                    fontWeight: FontWeight.bold))));
+              }
+            }));
   }
 }
 

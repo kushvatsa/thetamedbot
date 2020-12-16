@@ -1,6 +1,6 @@
 name: thetamedbot
 description: ThetaMedBot.
-version: 0.0.1-pre+5
+version: 1.0.0-pre+6
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

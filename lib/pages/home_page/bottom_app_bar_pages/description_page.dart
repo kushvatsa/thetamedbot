@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../drag_drop/skin_cancer_prediction.dart';
+import 'package:thetamedbot/pages/drag_drop/skin_cancer_prediction.dart';
 
 class DescriptionPage extends StatefulWidget {
   _DescriptionPage createState() => _DescriptionPage();

@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import '../../../../models/myuser.dart';
+import 'package:thetamedbot/models/myuser.dart';
 
 class FireBaseLoader {
   Future<Widget> _getImage(BuildContext context, String image_id) async {
     Image m;
-   
-    FirebaseStorage.instance.ref().child(image_id)
-      .getDownloadURL().then((downloadUrl) {
-        print("...................................."+downloadUrl.toString());
-        m = Image.network(
-          downloadUrl.toString(),
-          fit: BoxFit.scaleDown,
-        );
-      
-      });
-    print("////////////////////////////////////"+m.toString());
+
+    FirebaseStorage.instance
+        .ref()
+        .child(image_id)
+        .getDownloadURL()
+        .then((downloadUrl) {
+      print("...................................." + downloadUrl.toString());
+      m = Image.network(
+        downloadUrl.toString(),
+        fit: BoxFit.scaleDown,
+      );
+    });
+    print("////////////////////////////////////" + m.toString());
     return m;
   }
 
@@ -43,7 +45,8 @@ class FireBaseLoader {
                   itemCount: snapshot.data.documents.length,
                   itemBuilder: (context, itemCount) {
                     return Container(
-                      height: 230,width:150,
+                      height: 230,
+                      width: 150,
                       padding: EdgeInsets.all(10.0),
                       child: Row(children: <Widget>[
                         /*getImageNetwork(
@@ -62,25 +65,34 @@ class FireBaseLoader {
                                     backgroundColor: Colors.blue[900],
                                   );
                           },
-                        )*/FutureBuilder(builder: (context,snapshot){
-                          print(snapshot.data.toString());
-                          return Image.network(snapshot.data.toString(),width: 180,height:150);
-                        },future:
-                        FirebaseStorage.instance.ref().child(snapshot.data.documents[itemCount]["image_id"]).getDownloadURL(),
-                        
+                        )*/
+                        FutureBuilder(
+                          builder: (context, snapshot) {
+                            print(snapshot.data.toString());
+                            return Image.network(snapshot.data.toString(),
+                                width: 180, height: 150);
+                          },
+                          future: FirebaseStorage.instance
+                              .ref()
+                              .child(snapshot.data.documents[itemCount]
+                                  ["image_id"])
+                              .getDownloadURL(),
                         ),
-                        Column(crossAxisAlignment: CrossAxisAlignment.center,mainAxisAlignment: MainAxisAlignment.center,children: <Widget>[
-                          Text("\t\tResult: " +
-                             snapshot
-                                  .data.documents[itemCount]["diagnose_result"]
-                                  .toString()+
-                          "\n\t\tAccuracy: " +
-                              snapshot
-                                  .data
-                                  .documents[itemCount]
-                                      ["diagnose_prediction_result"].toStringAsFixed(3)
-                                  
-                        )])
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text("\t\tResult: " +
+                                  snapshot.data
+                                      .documents[itemCount]["diagnose_result"]
+                                      .toString() +
+                                  "\n\t\tAccuracy: " +
+                                  snapshot
+                                      .data
+                                      .documents[itemCount]
+                                          ["diagnose_prediction_result"]
+                                      .toStringAsFixed(3))
+                            ])
                       ]),
                       margin: EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
