@@ -5,6 +5,7 @@ import 'package:thetamedbot/locals/newapptheme.dart';
 import 'package:thetamedbot/pages/auth_widget.dart';
 import 'package:thetamedbot/pages/auth_widget_builder.dart';
 import 'package:thetamedbot/pages/home_page/home_page_v1.dart';
+import 'package:thetamedbot/pages/description_page/description.dart';
 import 'package:thetamedbot/pages/privacy_page/privacy_page.dart';
 import 'package:thetamedbot/pages/profile_page/profile_page.dart';
 import 'package:thetamedbot/pages/signin_page/signin_page.dart';
@@ -50,6 +51,7 @@ class _MyAppState extends State<MyApp> {
             "/profile": (context) => ProfilePage(userSnapshot: userSnapshot),
             "/privacy": (context) => PrivacyApps(),
             "/tc": (context) => TCPage(),
+            "/dp": (context) => Description(),
           },
         );
       }),

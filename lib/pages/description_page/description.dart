@@ -1,17 +1,14 @@
 import "package:flutter/material.dart";
 import "package:introduction_screen/introduction_screen.dart";
-import 'package:thetamedbot/pages/signin_page/signup_page.dart';
 
-class DescriptionPage extends StatefulWidget {
-  _DescriptionPage createState() => _DescriptionPage();
+class Description extends StatefulWidget {
+  @override
+  _DescriptionState createState() => _DescriptionState();
 }
 
-class _DescriptionPage extends State<DescriptionPage> {
+class _DescriptionState extends State<Description> {
   void _introEnd(context) {
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-      //return SignUpPage();
-      return SignUpPage();
-    }));
+    Navigator.pushReplacementNamed(context, '/sup');
   }
 
   Widget build(BuildContext context) {

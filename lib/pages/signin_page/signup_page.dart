@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:thetamedbot/pages/signin_page/validators.dart';
 import 'package:thetamedbot/services/firebase_auth_service.dart';
 import 'package:provider/provider.dart';
-import 'signin_page.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -113,11 +112,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         SizedBox(height: 20.0),
                         InkWell(
                           onTap: () {
-                            //Navigator.pop(context);
-                            Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (context) {
-                              return SignInPage();
-                            }));
+                            Navigator.pop(context);
                           },
                           child: Container(
                             height: 40.0,
@@ -158,10 +153,7 @@ class _SignUpPageState extends State<SignUpPage> {
       await auth.createUserWithEmailAndPassword(
           _emailController.text, _passwordController.text);
       await auth.verifyEmailSend();
-      //Navigator.pop(context);
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-        return SignInPage();
-      }));
+      Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       _scaffoldKey.currentState.showSnackBar(SnackBar(
         content: Text("${e.message}"),

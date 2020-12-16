@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:thetamedbot/models/myuser.dart';
-import 'package:thetamedbot/pages/signin_page/signin_page.dart';
 import 'package:thetamedbot/services/firebase_auth_service.dart';
 import 'package:provider/provider.dart';
 
@@ -68,7 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         avatar: widget.userSnapshot.data.emailVerified
                             ? Icon(Icons.check, color: Colors.green)
-                            : Icon(Icons.check, color: Colors.red),
+                            : Icon(Icons.close, color: Colors.red),
                         onSelected: (bool) async {
                           if (!widget.userSnapshot.data.emailVerified) {
                             final auth = context.read<FirebaseAuthService>();
@@ -118,10 +117,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   onTap: () async {
                     final auth = context.read<FirebaseAuthService>();
                     await auth.signOut();
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) {
-                      return SignInPage();
-                    }));
+                    // Navigator.pushReplacement(context,
+                    //     MaterialPageRoute(builder: (context) {
+                    //   return SignInPage();
+                    // }));
                   },
                   child: Card(
                     child: ListTile(
