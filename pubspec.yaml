@@ -19,11 +19,8 @@ dependencies:
   firebase_storage: ^5.2.0
   image_picker: ^0.6.7+15
   shared_preferences: ^0.5.12+4
-  font_awesome_flutter: ^8.10.1
-  animations: ^1.1.2
   connectivity: ^2.0.2
   fancy_bottom_bar: ^0.0.1
-  salomon_bottom_bar: ^2.0.0
   nice_button: ^0.1.7
   url_launcher: ^5.7.10
   flutter_localizations:

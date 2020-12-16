@@ -24,7 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
         resizeToAvoidBottomPadding: false,
         appBar: AppBar(
           title: Text(
-            'Profilex',
+            'Profile',
           ),
           automaticallyImplyLeading: false,
           actions: <Widget>[
