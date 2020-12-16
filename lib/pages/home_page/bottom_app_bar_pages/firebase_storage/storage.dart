@@ -12,13 +12,13 @@ class FirebaseStoringClass {
   Future<String> uploadImageToFirebase(
       BuildContext context, File _image) async {
     String filename = basename(_image.path);
-    firebase_storage.StorageReference storageReference = firebase_storage
+    firebase_storage.Reference storageReference = firebase_storage
         .FirebaseStorage.instance
         .ref()
         .child("diagnoses_images/$filename");
         
-    firebase_storage.StorageUploadTask uploadTask = storageReference.putFile(_image);
-    firebase_storage.StorageTaskSnapshot tasksnapshot=await uploadTask.onComplete;
+    firebase_storage.UploadTask uploadTask = storageReference.putFile(_image);
+    //firebase_storage.TaskSnapshot tasksnapshot= await uploadTask.onComplete;
     
     /*var url = await storageReference
         .getDownloadURL()
