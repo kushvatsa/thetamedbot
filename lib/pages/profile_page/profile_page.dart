@@ -26,17 +26,6 @@ class _ProfilePageState extends State<ProfilePage> {
           title: Text(
             'Profile',
           ),
-          automaticallyImplyLeading: false,
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.close,
-              ),
-              onPressed: () {
-                return Navigator.pop(context);
-              },
-            ),
-          ],
         ),
         body: SafeArea(
           child: SingleChildScrollView(

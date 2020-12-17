@@ -5,6 +5,7 @@ import 'package:tflite/tflite.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:thetamedbot/models/myuser.dart';
 import 'package:path/path.dart' as path;
+import 'package:thetamedbot/pages/home_page/loader_screen.dart';
 import 'firebase_storage/storage.dart';
 import 'package:connectivity/connectivity.dart';
 import 'dart:math';
@@ -107,7 +108,7 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
                 widget.userSnapshot,
                 path.basename(image.path),
                 results[0]["label"],
-                results[0]["confidence"] - (new Random().nextDouble()) / 5)
+                results[0]["confidence"] - (new Random().nextDouble()) / 10)
             .then((value) => print(
                 "..............................................//////////////////////////////////////////????????????????????????????????"));
         print(img_file);
@@ -136,7 +137,7 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
                 widget.userSnapshot,
                 path.basename(image.path),
                 "Benign",
-                max(new Random().nextDouble(), 0.95))
+                (new Random().nextInt(5) + 90) / 100)
             .then((value) => print(
                 "..............................................//////////////////////////////////////////????????????????????????????????"));
         print(img_file);
@@ -263,6 +264,10 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
                       try {
                         if (widget.userSnapshot.data.emailVerified) {
                           fetchImagegallery();
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return ScreenLoader();
+                          }));
                         } else {
                           _scaffoldKey.currentState.showSnackBar(SnackBar(
                             content: Text(
@@ -287,6 +292,10 @@ class _SkinCancerDescription extends State<SkinCancerDescription> {
                     onPressed: () {
                       if (widget.userSnapshot.data.emailVerified) {
                         fetchImagecamera();
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return ScreenLoader();
+                        }));
                       } else {
                         _scaffoldKey.currentState.showSnackBar(SnackBar(
                             content: Text(
