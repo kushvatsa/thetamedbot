@@ -15,11 +15,6 @@ class FirebaseStoringClass {
         .child("diagnoses_images/$filename");
 
     firebase_storage.UploadTask uploadTask = storageReference.putFile(_image);
-    //firebase_storage.TaskSnapshot tasksnapshot= await uploadTask.onComplete;
-
-    /*var url = await storageReference
-        .getDownloadURL()
-        .then((value) => print("Upload Done"));*/
     return "diagnoses_images/$filename";
   }
 

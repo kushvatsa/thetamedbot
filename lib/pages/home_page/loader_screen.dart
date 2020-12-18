@@ -10,7 +10,6 @@ class ScreenLoader extends StatefulWidget {
 class _ScreenLoaderState extends State<ScreenLoader> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     startTime();
   }
@@ -42,8 +41,10 @@ class _ScreenLoaderState extends State<ScreenLoader> {
             SizedBox(height: 10),
             Center(
                 child: Text("Processing The Image",
-                    style: GoogleFonts.abel(fontSize: 15,
-                        color: Colors.black, fontWeight: FontWeight.bold)))
+                    style: GoogleFonts.abel(
+                        fontSize: 15,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold)))
           ],
         ),
       ),

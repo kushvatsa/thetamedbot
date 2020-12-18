@@ -12,17 +12,14 @@ class FireBaseLoader {
         .child(image_id)
         .getDownloadURL()
         .then((downloadUrl) {
-      print("...................................." + downloadUrl.toString());
       m = Image.network(
         downloadUrl.toString(),
         fit: BoxFit.scaleDown,
       );
     });
-    print("////////////////////////////////////" + m.toString());
     return m;
   }
 
-  //Future<List<DocumentSnapshot>> load_history(AsyncSnapshot<MyUser> user){
   Widget load_history(AsyncSnapshot<MyUser> user) {
     return StreamBuilder(
         stream: FirebaseFirestore.instance
@@ -31,11 +28,6 @@ class FireBaseLoader {
             .collection("Image_Diagnoses")
             .snapshots(),
         builder: (context, snapshot) {
-          /*print(snapshot);
-          print(snapshot.hasData);
-          print(snapshot.data);
-          print(snapshot.data.documents.length);*/
-
           return !snapshot.hasData
               ? Center(
                   child: CircularProgressIndicator(
@@ -49,23 +41,6 @@ class FireBaseLoader {
                       width: 150,
                       padding: EdgeInsets.all(10.0),
                       child: Row(children: <Widget>[
-                        /*getImageNetwork(
-                            snapshot.data.documents[itemCount]["image_id"])*/
-                        /*Image.network(
-                            "https://firebasestorage.googleapis.com/v0/b/thetamedbot.appspot.com/o/diagnoses_images%2Fimage_picker2795124781322094233.jpg?alt=media&token=1197b1b1-06f9-4dc8-a180-0522aebf7217",
-                            width: 150),*/
-                        /*FutureBuilder(
-                          future: _getImage(context,
-                              snapshot.data.documents[itemCount]["image_id"]),
-                          builder: (context, snapshot) {
-                            return snapshot.connectionState ==
-                  ConnectionState.waiting //snapshot.hasData
-                                ? Container(child:snapshot.data)
-                                : CircularProgressIndicator(
-                                    backgroundColor: Colors.blue[900],
-                                  );
-                          },
-                        )*/
                         FutureBuilder(
                           builder: (context, snapshot) {
                             print(snapshot.data.toString());
@@ -109,9 +84,6 @@ class FireBaseLoader {
     var url;
     ref.getDownloadURL().then((value) {
       url = value;
-      print(
-          "..........................................................................");
-      print(value.toString());
     });
     return url == null
         ? CircularProgressIndicator(
@@ -125,9 +97,6 @@ class FireBaseLoader {
     var url;
     ref.getDownloadURL().then((value) {
       url = value;
-      print(
-          "..........................................................................");
-      print(value.toString());
     });
   }
 }
